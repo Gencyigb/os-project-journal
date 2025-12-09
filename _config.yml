@@ -1,0 +1,8 @@
+title: "Operating System Configuration, Security & Performance Journal"
+description: "CMPN2022 Technical Journal – University of Roehampton"
+theme: jekyll-theme-slate
+markdown: kramdown
+
+# Custom styling
+include:
+  - styles.css
