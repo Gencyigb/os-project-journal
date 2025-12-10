@@ -1,134 +1,85 @@
-Week 3 – Application Selection for Performance Testing
+# ⚙️ Week 3 – Application Selection for Performance Testing
 
-Week 3 focuses on selecting the appropriate applications and tools needed to generate CPU, memory, disk, network and service-level workloads. These tools will later be measured in Week 6 to evaluate system performance and compare baseline vs. stress behaviour.
+Week 3 focused on selecting the tools required to generate CPU, memory, disk, network, and service-level workloads. These applications form the basis of the performance tests conducted in Week 6. The goal was to choose tools that provide reliable, measurable, and repeatable results while operating entirely through the command line.
 
+---
 
+## Workload Application Selection
 
- 1. Workload Application Selection
+A set of specialised tools was chosen to evaluate the behaviour of the system under different types of stress. Each application targets a specific subsystem and provides quantitative output suitable for analysis.
 
-The applications were chosen to test every major subsystem of the operating system: CPU, memory, disk, network, and service performance.
+```markdown
+| Workload Type      | Tool / Application | Purpose |
+|--------------------|-------------------|---------|
+| **CPU**            | stress-ng          | Generates controlled CPU load for analysing scheduler behaviour and utilisation levels. |
+| **Memory**         | memtester          | Allocates and tests large blocks of RAM to observe memory pressure and swap activity. |
+| **Disk I/O**       | fio                | Performs sequential and random read/write operations with configurable block sizes. |
+| **Network**        | iperf3             | Measures bandwidth and connection stability between workstation and server. |
+| **Web Service**    | nginx              | Serves lightweight HTTP responses for evaluating service responsiveness. |
+```
 
-### Selected Applications for Testing
+![Tool selection screenshot](images/week3-tool-selection.png)
 
-| Workload Type      | Tool / Application | Purpose & Justification |
-|--------------------|-------------------|--------------------------|
-| **CPU**            | stress-ng          | Generates controlled CPU stress across multiple cores; ideal for evaluating scheduling and CPU utilisation. |
-| **Memory (RAM)**   | memtester          | Allocates and tests large blocks of memory to observe RAM pressure and potential swap usage. |
-| **Disk I/O**       | fio                | Industry-standard tool for random/sequential read/write benchmarks and latency measurement. |
-| **Network**        | iperf3             | Measures network bandwidth, latency, and reliability between workstation and server. |
-| **Web Service**    | nginx              | Lightweight and efficient web server used to test real-world request handling and response time. |
+---
 
+## Installation of Workload Tools
 
-These tools collectively provide complete coverage of system performance metrics.
+The selected applications were installed on the server to support the performance methodology defined in Week 2.
 
-
-2. Installation Documentation (via SSH)
-
-All installations were performed remotely from the iMac workstation using SSH.
-
-Commands used:
-
-# Update package lists
+```bash
 sudo apt update
-
-# Install tools for CPU, RAM, disk, network, and service testing
 sudo apt install -y stress-ng memtester fio iperf3 nginx
+```
 
-# Verify installation
+Version checks confirmed successful installation:
+
+```bash
 stress-ng --version
 fio --version
 iperf3 --version
 nginx -v
+```
 
-Screenshot:
+![Installation output](images/week3-installation.png)
 
-	•	[APT install tools](images/week3-install.png)
-  
-	•	[Version checks](images/week3-versions.png)
+---
 
+## Expected Resource Usage Profiles
 
- 3. Expected Resource Usage Profiles
+Each tool was reviewed to understand its expected impact on the system. This helped prepare the monitoring plan and ensured that the system’s behaviour under load was predictable and measurable.
 
-Before running tests, I documented what behaviour each tool is expected to generate.
+```markdown
+| Tool        | Expected Resource Behaviour |
+|-------------|-----------------------------|
+| **stress-ng** | High CPU utilisation, increased load averages. |
+| **memtester** | Significant RAM usage, possible swap use on smaller systems. |
+| **fio**       | High disk throughput, increased latency under heavy I/O. |
+| **iperf3**    | High network bandwidth usage between endpoints. |
+| **nginx**     | Light CPU and memory usage with quick response times. |
+```
 
-### Expected Behaviour per Tool
+![Resource usage planning](images/week3-resource-usage.png)
 
-| Tool        | Expected Resource Usage | Notes |
-|-------------|--------------------------|-------|
-| **stress-ng** | Very high CPU utilisation (up to 100%) | Used to evaluate CPU saturation and system responsiveness. |
-| **memtester** | High RAM usage; may trigger swap if memory is limited | Helps understand memory pressure and OS behaviour. |
-| **fio**       | High disk read/write throughput and potential I/O bottlenecks | Useful for identifying disk performance limitations. |
-| **iperf3**    | High sustained network throughput | Measures LAN network speed between workstation and server. |
-| **nginx**     | Moderate CPU + memory usage depending on request load | Tests application-level behaviour and server response times. |
+---
 
-These expectations help validate whether the system behaves normally or unusually during Week 6 tests.
+## Monitoring Plan
 
+The monitoring approach for Week 6 was designed to capture real-time system behaviour during each workload test. These commands were selected for their ability to measure CPU activity, memory usage, disk I/O, and network behaviour effectively.
 
-4. Monitoring Plan Per Workload
+```bash
+top -bn1 | head -n 5
+vmstat 1 5
+iostat -xz 1 5
+df -h
+free -h
+ss -s
+ping -c 5 SERVER_IP
+```
 
-This section defines the monitoring commands that will be used later to observe system behaviour during tests.
+![Monitoring plan](images/week3-monitoring-plan.png)
 
-CPU – stress-ng
+---
 
-	•	Commands: top, htop, vmstat 1 10
-  
-	•	Metrics: CPU %, load average, process scheduling
+## Reflection
 
-Memory – memtester
-
-	•	Commands: free -h, vmstat 1 10
-  
-	•	Metrics: RAM usage, swap activity
-
-Disk – fio
-
-	•	Commands: iostat -xz 1 10, df -h
-  
-	•	Metrics: throughput (MB/s), IOPS, latency
-
-Network – iperf3
-
-	•	Commands: iperf3 -s on server, iperf3 -c on workstation
-  
-	•	Metrics: bandwidth, retransmits, latency (ping)
-
-Web service – nginx
-
-	•	Commands: curl -I http://SERVER_IP, top, access logs
-  
-	•	Metrics: response times, CPU load per request
-
-
-
-5. Why These Tools Were Selected (Academic Justification)
-   
-	•	They are industry-standard, widely documented, and reliable.
-
-	•	Each tool isolates a specific subsystem — making performance analysis clearer.
-
-	•	The tools generate both baseline and stress workloads.
-
-	•	All tools run entirely in the Linux command line, supporting LO4.
-
-	•	Their output is measurable, allowing for graphs and tables in Week 6.
-
-This ensures a complete and justifiable performance evaluation approach.
-
-
-
- Screenshot:
-
-
-	•	[stress-ng installed](images/week3-stressng.png)
-  
-	•	[fio installed](images/week3-fio.png)
-  
-	•	[iperf3 installed](images/week3-iperf3.png)
-  
-	•	[nginx installed](images/week3-nginx.png)
-
-
-
-6. Week 3 Reflection
-
-Week 3 translated the performance plan into a concrete set of tools and monitoring strategies. Selecting these applications ensured full subsystem coverage and supported clear, quantifiable evaluation in Week 6. This also reinforced the importance of preparing a controlled testing environment so later results can be meaningfully compared and analysed.
+Week 3 established the technical tools required to conduct meaningful performance testing. By selecting command-line driven applications with predictable behaviour, the system was prepared for detailed workload evaluation. Each tool supports analysis of a specific subsystem, enabling a structured approach to system measurement in Week 6. This preparation strengthened command-line proficiency and ensured a consistent methodology for later performance analysis.
