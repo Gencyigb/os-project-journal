@@ -1,0 +1,133 @@
+# 📊 Week 6 – Performance Evaluation & Analysis
+
+Week 6 focused on generating controlled workloads on the Ubuntu Server and collecting quantitative performance data. CPU, memory, disk, and network subsystems were tested using the tools installed in earlier weeks. Monitoring was performed remotely through SSH, allowing evaluation of how the system behaves under baseline and stress conditions. Screenshots will be added to provide evidence of each test.
+
+---
+
+## CPU Performance Evaluation
+
+CPU performance was assessed using stress-ng to create a controlled load across available cores. Real-time system behaviour was observed using monitoring tools such as top, vmstat, and iostat. These results help compare idle vs. stressed system states.
+
+CPU workload execution:
+
+```bash
+stress-ng --cpu 4 --timeout 20
+```
+
+Monitoring CPU activity:
+
+```bash
+top -bn1 | head -n 5
+vmstat 1 5
+iostat -c 1 5
+```
+
+![CPU stress output](images/week6-cpu-stress.png)  
+![CPU monitoring output](images/week6-cpu-monitoring.png)
+
+---
+
+## Memory Performance Evaluation
+
+Memory performance was evaluated by allocating and testing RAM under load. The aim was to observe changes in free memory, buffers, caches, and swap activity.
+
+Memory test:
+
+```bash
+memtester 512M 1
+```
+
+Monitoring memory behaviour:
+
+```bash
+free -h
+vmstat 1 5
+```
+
+![Memory test output](images/week6-memory-test.png)  
+![Memory monitoring](images/week6-memory-monitoring.png)
+
+---
+
+## Disk Performance Evaluation
+
+Disk read/write performance was measured using fio. The test simulated both sequential and random workloads, enabling assessment of throughput, latency, and I/O patterns.
+
+Disk workload:
+
+```bash
+fio --name=disk-test --rw=readwrite --size=200M --bs=4k --numjobs=1 --time_based=1 --runtime=20 --group_reporting
+```
+
+Monitoring disk I/O:
+
+```bash
+iostat -xz 1 5
+df -h
+```
+
+![fio output](images/week6-fio-output.png)  
+![Disk I/O monitoring](images/week6-disk-monitoring.png)
+
+---
+
+## Network Performance Evaluation
+
+Network throughput was tested between the workstation and server using iperf3. This assessment helped measure available bandwidth, packet retransmissions, and overall connection quality.
+
+Network server mode:
+
+```bash
+iperf3 -s
+```
+
+Network client mode (workstation):
+
+```bash
+iperf3 -c SERVER_IP
+```
+
+Monitoring latency and connectivity:
+
+```bash
+ping -c 5 SERVER_IP
+ss -s
+```
+
+![iperf3 output](images/week6-iperf3-output.png)  
+![Network monitoring](images/week6-network-monitoring.png)
+
+---
+
+## Web Service Performance Evaluation
+
+A lightweight web service (nginx) was used to measure request handling performance. Response times were captured through repeated requests while monitoring CPU and disk usage.
+
+Service check:
+
+```bash
+sudo systemctl status nginx
+curl -I http://SERVER_IP
+```
+
+![nginx response](images/week6-nginx-response.png)
+
+---
+
+## Observed System Behaviour
+
+Across all tests, several consistent patterns were noted:
+
+- CPU quickly reached full utilisation under stress-ng, demonstrating expected scheduler behaviour.  
+- Memory allocation tests showed stable RAM usage with minimal swap activity, indicating healthy memory management.  
+- fio tests revealed normal disk I/O patterns with increased latency under load.  
+- iperf3 results reflected stable LAN performance with predictable throughput.  
+- nginx requests produced minimal CPU overhead, illustrating efficient service behaviour.
+
+These results provide the baseline required for comparing secure vs. stressed configuration performance.
+
+---
+
+## Reflection
+
+Week 6 provided measurable insights into how the system behaves under controlled workloads. The tests demonstrated the effects of CPU saturation, memory pressure, disk I/O patterns, and network throughput. Remote monitoring through SSH showed stable performance and reliable resource reporting. This data supports the final evaluation in Week 7 and contributes to understanding performance trade-offs associated with security configuration.
