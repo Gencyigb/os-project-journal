@@ -1,109 +1,96 @@
-Week 2 – Security Planning & Testing Methodology
+# 🔐 Week 2 – Security Planning & Testing Methodology
 
-Week 2 focuses on planning the security controls and defining the performance testing methodology before applying any system changes. This planning ensures that all configuration and hardening decisions later in the project are structured, justified, and measurable.
+Week 2 focused on defining the security requirements for the server and planning the performance testing approach. This preparation ensured that the configuration and evaluation work performed in later weeks would be systematic, measurable, and aligned with best practices.
 
+---
 
+## Security Planning
 
-1. Security Configuration Checklist
+A structured security plan was created to identify all safeguards required to protect the server. This included authentication controls, network restrictions, privilege management, intrusion detection, and system hardening mechanisms.
 
-This checklist outlines the required security controls that will be implemented in Weeks 4 and 5.
+Key security objectives established for the system:
 
-SSH Security
+- Enforce key-based SSH access  
+- Disable root login and password authentication  
+- Restrict SSH access to a trusted workstation  
+- Implement firewall rules with default-deny policies  
+- Apply mandatory access control using AppArmor  
+- Enable automatic security updates  
+- Deploy intrusion detection with fail2ban  
+- Maintain clear visibility through logs and monitoring tools  
 
-	•	Disable password authentication
-  
-	•	Enforce SSH key-based login
-  
-	•	Disable direct root login
-  
-	•	Restrict SSH access to the iMac workstation’s IP
-  
-	•	Optionally change default SSH port for defence-in-depth
+These objectives shaped the configuration tasks implemented in Week 4 and Week 5.
 
-Firewall (UFW)
+![Security planning screenshot](images/week2-security-plan.png)
 
-	•	Deny all inbound traffic by default
-  
-	•	Allow SSH only from trusted IP
-  
-	•	Log denied attempts
-  
-	•	Confirm firewall persists across reboots
+---
 
-User & Privilege Management
+## Threat Model
 
-	•	Create non-root admin account
-  
-	•	Ensure correct sudo group permissions
-  
-	•	Disable or lock unnecessary accounts
+A threat model was developed to identify potential risks and document appropriate mitigation strategies. This provided a foundation for evaluating whether the selected security controls were adequate.
 
-Mandatory Access Control
+```markdown
+| Threat ID | Description | Impact | Mitigation Strategy |
+|-----------|-------------|--------|----------------------|
+| **T1** | Brute-force SSH attempts | Unauthorised access | Key-based authentication, fail2ban, restricted SSH access |
+| **T2** | Unnecessary open ports | Increased attack surface | Firewall hardening, service minimisation |
+| **T3** | Privilege escalation | Full system compromise | Least-privilege accounts, sudo restrictions, AppArmor confinement |
+| **T4** | Unpatched vulnerabilities | Remote exploitation | Automatic security updates, regular package maintenance |
+| **T5** | Lack of monitoring | Undetected breaches | Security verification scripts, log reviews, remote monitoring |
+```
 
-	•	Enable AppArmor on the server
-  
-	•	Verify key services run under AppArmor profiles
-  
-	•	Review profiles in enforce vs complain mode
+![Threat model diagram](images/week2-threat-model.png)
 
-Automatic Updates
+---
 
-	•	Install & enable unattended security upgrades
-  
-	•	Confirm update logs and schedules
+## Performance Testing Strategy
 
-Network Security
+A performance testing methodology was created to ensure consistent and comparable results across CPU, memory, disk, network, and service workloads. This plan defined the metrics, tools, and monitoring techniques that would be used during Week 6.
 
-	•	Identify all listening ports
-  
-	•	Remove or disable unnecessary services
+### Performance Metrics
 
-	•	Plan later validation using nmap
+- CPU utilisation and load averages  
+- Memory consumption and swap activity  
+- Disk throughput, latency, and I/O patterns  
+- Network bandwidth and packet retransmissions  
+- Web service responsiveness under light load  
 
+### Tools Selected
 
-[Security checklist notes](images/week2-checklist.png)
+- **stress-ng** – CPU stress generation  
+- **memtester** – memory allocation testing  
+- **fio** – disk performance benchmarking  
+- **iperf3** – network throughput measurement  
+- **nginx** – lightweight service for response testing  
+- **top, vmstat, iostat, ss, free** – real-time monitoring utilities  
 
+These tools were chosen for their reliability, command-line compatibility, and ability to generate quantifiable output.
 
+![Performance planning screenshot](images/week2-performance-plan.png)
 
-2. Performance Testing Strategy
+---
 
-Before implementing changes, it is important to define what will be tested and how.
+## Monitoring and Measurement Approach
 
-Metrics to Measure
+Monitoring was planned to occur simultaneously with workload execution to capture real-time system behaviour. This ensured that the data collected reflected accurate system responses under stress.
 
-	•	CPU utilisation
-  
-	•	Memory consumption
-  
-	•	Disk read/write performance
-  
-	•	Network throughput
-  
-	•	Latency and responsiveness
-  
-	•	Impact of security controls on performance
+Monitoring commands included:
 
-Tools Planned for Use
+```bash
+top -bn1 | head -n 5
+vmstat 1 5
+iostat -xz 1 5
+free -h
+ss -s
+ping -c 5 SERVER_IP
+```
 
-	•	top / htop – real-time CPU and memory
-  
-	•	vmstat – system behaviour overview
-  
-	•	iostat – disk I/O activity
-  
-	•	df -h – disk capacity during tests
-  
-	•	ping – basic latency
-  
-	•	iperf3 – network throughput test
-  
-	•	stress-ng, memtester, fio, nginx – workload tools (selected in Week 3)
+These metrics would later be compared against the results recorded during Week 6.
 
+![Monitoring screenshot](images/week2-monitoring.png)
 
-[performance testing notes](images/week2-performance-plan.png)
+---
 
+## Reflection
 
-
-3. Threat Model (Paste-Ready Table)
-
-Use this table directly in your GitHub Page — it is formatted for professional presentation and high marks.
+Week 2 established the strategic direction for the project by defining security objectives, identifying threats, selecting performance tools, and outlining the testing methodology. This planning ensured that later configuration and evaluation tasks were systematic, justified, and aligned with the learning outcomes. The threat model and performance approach provided the structure needed for rigorous analysis in the following weeks.
