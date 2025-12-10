@@ -1,192 +1,112 @@
-Week 4 - Initial System Configuration & Security Implementation
+# 🛡️ Week 4 – Initial System Configuration & Security Implementation
 
-Week 4 focuses on applying foundational security controls to the Ubuntu Server. All configuration was performed exclusively via SSH from the iMac workstation, following the module’s requirement that the server remains headless.
+Week 4 focused on applying the core security foundations required to protect the server. This included configuring SSH securely, enforcing firewall restrictions, establishing controlled user privileges, and validating secure remote access. These actions formed the baseline security posture on which later hardening and monitoring were built.
 
-This week implements SSH hardening, firewall protection, user management, and baseline validation steps.
+---
 
+## Secure SSH Configuration
 
-1. Configure SSH With Key-Based Authentication
+SSH was configured to ensure authenticated, encrypted, and restricted remote access. Key-based authentication was enabled, password login was disabled, and root login was prevented to reduce attack surface. The SSH configuration file was reviewed and updated accordingly.
 
-SSH keys improve security by removing password login risks and eliminating brute-force vulnerabilities.
-
-# On workstation (iMac)
-
-ssh-keygen -t ed25519
-
-# Copy public key to Ubuntu Server
-
-ssh-copy-id username@SERVER_IP
-
-# Test login without password
-
-ssh username@SERVER_IP
-
-Server-side SSH configuration:
-
+```bash
 sudo nano /etc/ssh/sshd_config
+```
 
-The following settings were applied:
+Key configuration rules:
+
+```text
 PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 LogLevel VERBOSE
+```
 
-Then SSH was restarted:
+Following these changes, the SSH service was reloaded.
 
+```bash
 sudo systemctl restart ssh
+```
 
+![SSH config screenshot](images/week4-ssh-config.png)
 
-Screenshot:
+---
 
-	•	[SSH keygen output](images/week4-ssh-keygen.png)
-  
-	•	[SSH config file](images/week4-sshd-config.png)
-  
-	•	[Successful key-based login](images/week4-ssh-login.png)
+## Firewall Configuration (UFW)
 
+A restrictive firewall policy was applied to ensure that only essential connections reached the server. Incoming traffic was denied by default, and SSH access was limited to the workstation’s IP address to prevent unauthorised access attempts.
 
-
- 2. Configure Firewall (UFW) to Allow SSH Only From the Workstation
-
-UFW was enabled to enforce a default-deny firewall policy.
-
-
-
-Commands executed:
-
+```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-
-
-
-# Allow SSH ONLY from workstation IP
 sudo ufw allow from 192.168.1.20 to any port 22
-
 sudo ufw enable
 sudo ufw status verbose
+```
 
-Additional Hardening:
+![Firewall configuration](images/week4-ufw-status.png)
 
-	•	Root login disabled in SSH (already done in section 1)
-  
-	•	Password policies reviewed
-  
-	•	Unnecessary accounts checked using:
+---
 
-cat /etc/passwd
+## User and Privilege Management
 
+A dedicated administrative account was created to avoid using the root account for routine tasks. This account was granted appropriate privileges through group membership, supporting least-privilege principles.
 
-Screenshot:
+```bash
+sudo adduser adminuser
+sudo usermod -aG sudo adminuser
+groups adminuser
+```
 
-	•	[adduser command output](images/week4-adduser.png)
-  
-	•	[groups adminuser output](images/week4-groups.png)
+![User creation screenshot](images/week4-user-management.png)
 
+This ensured that administrative actions were traceable and isolated from the root account.
 
- 4. SSH Access Evidence (Connection Verification)
+---
 
-A successful login using the non-root user and SSH key confirms that access control is correctly configured.
+## Verification of Secure SSH Access
 
-Expected terminal prompt:
+Secure access to the server was validated by connecting from the workstation using SSH keys. The login banner and prompt confirmed that the correct non-root user was authenticated.
 
-adminuser@hostname:~$
-
-Additional verification:
-
+```bash
+ssh adminuser@SERVER_IP
 who
-
 last
+```
 
+![SSH login verification](images/week4-ssh-login.png)
 
+This confirmed that remote management was functional while preserving security restrictions.
 
-Screenshot:
+---
 
-	•	[SSH login proof](images/week4-ssh-proof.png)
+## Firewall Rule Review
 
+The active firewall rules were reviewed to ensure that no unnecessary services were exposed externally. UFW’s numbered rule list helped validate that the workstation-specific SSH rule was in place.
 
-
- 5. Configuration Files (Before & After Evidence)
-
-### Files Modified in Week 4
-
-| File | Purpose | Change Made |
-|------|---------|-------------|
-| **/etc/ssh/sshd_config** | SSH security configuration | Disabled password login, disabled root login, enabled key-based authentication |
-| **/etc/ufw/user.rules** | Firewall ruleset | Added allow rule for SSH only from workstation IP |
-| **/etc/sudoers** (checked only) | Privilege management | Verified correct sudo permissions for admin user; no changes made |
-
-
-
-Screenshot:
-
-	•	[sshd_config before](images/week4-before-ssh.png)
-  
-	•	[sshd_config after](images/week4-after-ssh.png)
-
- 6. Firewall Documentation (Complete Rule Set)
-
-
-
-### UFW Rules Applied
-
-| Rule | Description |
-|------|-------------|
-| deny incoming | All inbound traffic blocked by default |
-| allow outgoing | All outbound traffic allowed |
-| allow from 192.168.1.20 to any port 22 | Only the workstation can SSH into the server |
-
-
-To display all rules:
-
+```bash
 sudo ufw status numbered
+```
 
-Screenshot:
+![UFW numbered rules](images/week4-ufw-numbered.png)
 
+---
 
-	•	[UFW numbered output](images/week4-ufw-numbered.png)
+## Configuration File Documentation
 
+Several configuration files were modified or reviewed during this week to implement security controls. Documenting these ensured clarity and supported later audit work.
 
- 7. Remote Administration Evidence
+```markdown
+| File                   | Purpose                              | Summary of Change                                     |
+|------------------------|---------------------------------------|--------------------------------------------------------|
+| **/etc/ssh/sshd_config** | SSH security configuration            | Disabled password login, root login; enabled key auth |
+| **/etc/ufw/user.rules**   | Firewall rule definitions            | Restricted SSH access to workstation IP               |
+| **/etc/sudoers** (reviewed) | Privilege management               | Confirmed correct sudo permissions                    |
+```
 
-All administrative actions in Week 4 were executed via SSH, as required.
+![Config file review](images/week4-config-review.png)
 
-Commands demonstrated:
+---
 
-ls -l
+## Reflection
 
-sudo apt update
-
-sudo nano /etc/ssh/sshd_config
-
-sudo ufw status
-
-Screenshot:
-
-	•	[Remote admin commands](images/week4-remote-admin.png)
-
- Week 4 Reflection
-
-Week 4 was critical in transforming the server from a default installation into a secure, hardened system appropriate for real-world deployment. Implementing SSH key authentication, firewall restrictions, privilege separation, and configuration reviews significantly improved the system’s security posture.
-
-These actions directly support:
-
-	•	LO3: Security implementation and assessment
-  
-	•	LO4: CLI proficiency demonstrated through full remote management
-  
-	•	LO5: Understanding configuration trade-offs (e.g., stricter SSH controls vs. usability)
-
-The secure baseline established in this week is essential for the additional hardening and monitoring introduced in Week 5.
-
-
-
-
-
-
-
-
-
-
-
-
-
+Week 4 established a secure, well-structured server environment capable of supporting further hardening and performance analysis. SSH hardening prevented unauthorised access, the firewall restricted network exposure, and controlled user privileges reinforced the principle of least privilege. These steps built the foundation for the more advanced security and monitoring measures introduced in Week 5 and contributed directly to developing secure administration practices and command-line proficiency.
