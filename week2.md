@@ -21,7 +21,7 @@ Key security objectives established for the system:
 
 These objectives shaped the configuration tasks implemented in Week 4 and Week 5.
 
-![Security planning screenshot](images/week2-security-plan.png)
+
 
 ---
 
@@ -39,7 +39,7 @@ A threat model was developed to identify potential risks and document appropriat
 | **T5** | Lack of monitoring | Undetected breaches | Security verification scripts, log reviews, remote monitoring |
 ```
 
-![Threat model diagram](images/week2-threat-model.png)
+
 
 ---
 
@@ -66,7 +66,7 @@ A performance testing methodology was created to ensure consistent and comparabl
 
 These tools were chosen for their reliability, command-line compatibility, and ability to generate quantifiable output.
 
-![Performance planning screenshot](images/week2-performance-plan.png)
+
 
 ---
 
@@ -87,7 +87,7 @@ ping -c 5 SERVER_IP
 
 These metrics would later be compared against the results recorded during Week 6.
 
-![Monitoring screenshot](images/week2-monitoring.png)
+
 
 ---
 
