@@ -32,8 +32,8 @@ sudo nano /etc/apt/apt.conf.d/50unattended-upgrades
 cat /var/log/unattended-upgrades/unattended-upgrades.log
 ```
 
-![Unattended upgrades config](images/week5-updates-config.png)  
-![Unattended upgrades log](images/week5-updates-log.png)
+![Unattended upgrades configuration](Images/Week5/week5-unattended-upgrades-config.jpeg)
+![Unattended upgrades log](Images/Week5/week5-unattended-upgrades-log.jpeg)
 
 ---
 
