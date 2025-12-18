@@ -27,7 +27,7 @@ Following these changes, the SSH service was reloaded.
 sudo systemctl restart ssh
 ```
 
-![SSH config screenshot](images/week4-ssh-config.png)
+![](Images/Week4/week4-ssh-service-status.jpeg)
 
 ---
 
@@ -43,7 +43,7 @@ sudo ufw enable
 sudo ufw status verbose
 ```
 
-![Firewall configuration](images/week4-ufw-status.png)
+![](Images/Week4/week4-ufw-firewall-ssh.jpeg)
 
 ---
 
@@ -57,7 +57,7 @@ sudo usermod -aG sudo adminuser
 groups adminuser
 ```
 
-![User creation screenshot](images/week4-user-management.png)
+![](Images/Week4/week4-adminuser-groups.jpeg)
 
 This ensured that administrative actions were traceable and isolated from the root account.
 
@@ -73,7 +73,7 @@ who
 last
 ```
 
-![SSH login verification](images/week4-ssh-login.png)
+![](Images/Week4/week4-check-user-groups.jpeg)
 
 This confirmed that remote management was functional while preserving security restrictions.
 
@@ -87,7 +87,7 @@ The active firewall rules were reviewed to ensure that no unnecessary services w
 sudo ufw status numbered
 ```
 
-![UFW numbered rules](images/week4-ufw-numbered.png)
+Images/Week4/week4-ufw-firewall-ssh.jpeg
 
 ---
 
@@ -103,7 +103,7 @@ Several configuration files were modified or reviewed during this week to implem
 | **/etc/sudoers** (reviewed) | Privilege management               | Confirmed correct sudo permissions                    |
 ```
 
-![Config file review](images/week4-config-review.png)
+Images/Week4/week4-ssh-config.jpeg
 
 ---
 
