@@ -13,8 +13,8 @@ sudo apt install -y apparmor apparmor-utils
 sudo aa-status
 ```
 
-![AppArmor status](images/week5-apparmor-status.png)  
-![AppArmor profiles](images/week5-apparmor-profiles.png)
+![AppArmor installation](Images/Week5/week5-apparmor-install.jpeg)
+![AppArmor status](Images/Week5/week5-apparmor-status.jpeg)
 
 ---
 
