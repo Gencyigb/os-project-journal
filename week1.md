@@ -17,7 +17,6 @@ The project uses a two-system architecture consisting of a workstation (iMac) an
 +------------------------------+            +------------------------------+
 ```
 
-![Architecture diagram](images/week1-architecture.png)
 
 ---
 
@@ -49,7 +48,6 @@ The workstation for this project is an iMac running macOS. It provided:
 
 This system acted as the administrative console throughout the project.
 
-![Workstation terminal](images/week1-terminal.png)
 
 ---
 
@@ -74,7 +72,7 @@ ip addr
 ping 192.168.1.50
 ```
 
-![Network settings](images/week1-network.png)
+
 
 ---
 
@@ -90,9 +88,7 @@ ip addr
 lsb_release -a
 ```
 
-![uname output](images/week1-uname.png)  
-![free output](images/week1-free.png)  
-![df output](images/week1-df.png)
+
 
 ---
 
