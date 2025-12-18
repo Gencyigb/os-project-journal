@@ -67,7 +67,7 @@ sudo systemctl status fail2ban
 sudo fail2ban-client status sshd
 ```
 
-![fail2ban status](images/week5-fail2ban-status.png)  
+![fail2ban installation](Images/Week5/week5-fail2ban-install.jpeg)
 ![fail2ban ssh jail](images/week5-fail2ban-jail.png)
 
 ---
