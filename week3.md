@@ -18,7 +18,7 @@ A set of specialised tools was chosen to evaluate the behaviour of the system un
 | **Web Service**    | nginx              | Serves lightweight HTTP responses for evaluating service responsiveness. |
 ```
 
-![Tool selection screenshot](images/week3-tool-selection.png)
+
 
 ---
 
@@ -40,7 +40,7 @@ iperf3 --version
 nginx -v
 ```
 
-![Installation output](images/week3-installation.png)
+
 
 ---
 
@@ -58,7 +58,7 @@ Each tool was reviewed to understand its expected impact on the system. This hel
 | **nginx**     | Light CPU and memory usage with quick response times. |
 ```
 
-![Resource usage planning](images/week3-resource-usage.png)
+
 
 ---
 
@@ -76,7 +76,6 @@ ss -s
 ping -c 5 SERVER_IP
 ```
 
-![Monitoring plan](images/week3-monitoring-plan.png)
 
 ---
 
