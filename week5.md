@@ -131,7 +131,6 @@ echo
 echo "=== Verification Complete ==="
 ```
 
-![security-baseline output](images/week5-security-baseline-output.png)
 
 ---
 
@@ -174,7 +173,7 @@ echo
 echo "=== Monitoring Completed ==="
 ```
 
-![monitoring output](images/week5-monitor-output.png)
+
 
 ---
 
