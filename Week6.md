@@ -22,7 +22,7 @@ vmstat 1 5
 iostat -c 1 5
 ```
 
-![CPU stress output](images/week6-cpu-stress.png)  
+![stress-ng installation](images/Week6/week6-stress-ng-installation.png)
 ![CPU monitoring output](images/week6-cpu-monitoring.png)
 
 ---
