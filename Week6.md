@@ -23,7 +23,7 @@ iostat -c 1 5
 ```
 
 ![stress-ng installation](images/Week6/week6-stress-ng-installation.png)
-![CPU monitoring output](images/week6-cpu-monitoring.png)
+![CPU monitoring using top, vmstat, and iostat](Images/Week6/week6-cpu-monitoring-top-vmstat-iostat.png)
 
 ---
 
@@ -44,7 +44,7 @@ free -h
 vmstat 1 5
 ```
 
-![Memory test output](images/week6-memory-test.png)  
+![Memtester installation for memory performance testing](Images/Week6/week6-memtester-installation.png) 
 ![Memory monitoring](images/week6-memory-monitoring.png)
 
 ---
@@ -67,7 +67,7 @@ df -h
 ```
 
 ![fio output](images/week6-fio-output.png)  
-![Disk I/O monitoring](images/week6-disk-monitoring.png)
+![Disk performance test using fio](Images/Week6/week6-fio-disk-performance.png)
 
 ---
 
