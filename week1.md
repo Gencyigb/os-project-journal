@@ -94,4 +94,6 @@ lsb_release -a
 
 ## Reflection
 
-Week 1 established the structural foundation for the entire project. Selecting Ubuntu Server ensured compatibility with forthcoming security and performance tasks, while documenting system architecture and network configuration created a clear operational framework. Collecting baseline system information provided essential reference data for later evaluation and analysis. These activities supported the development of planning, documentation, and command-line proficiency skills.
+Week 1 established the structural foundation for the entire project. Selecting Ubuntu Server ensured long-term stability and compatibility with the security and performance tasks introduced in later weeks, while documenting the system architecture and network configuration created a clear and repeatable operational framework. Collecting baseline system information provided essential reference data for subsequent evaluation and comparison.
+
+This initial setup reduced configuration ambiguity in later stages and enabled changes to be assessed against a known starting point. Overall, Week 1 reinforced the importance of careful system planning, documentation, and baseline measurement as prerequisites for effective security analysis and performance evaluation.
