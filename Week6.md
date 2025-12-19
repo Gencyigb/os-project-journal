@@ -144,4 +144,6 @@ CPU saturation under stress-ng reached 100% across all cores with no abnormal sc
 
 ## Reflection
 
-Week 6 provided measurable insights into how the system behaves under controlled workloads. The tests demonstrated the effects of CPU saturation, memory pressure, disk I/O patterns, and network throughput. Remote monitoring through SSH showed stable performance and reliable resource reporting. This data supports the final evaluation in Week 7 and contributes to understanding performance trade-offs associated with security configuration.
+Week 6 provided measurable insights into how the system behaves under controlled workloads. The tests demonstrated the effects of CPU saturation, memory pressure, disk I/O patterns, and network throughput under realistic conditions. CPU stress tests showed predictable scheduler behaviour under full utilisation, while memory tests confirmed stable allocation with minimal swap activity. Disk I/O benchmarking revealed increased latency under load, consistent with expected storage behaviour, and network testing confirmed stable LAN throughput.
+
+Remote monitoring via SSH proved effective for collecting performance data without introducing significant overhead, reflecting real-world server administration practices. Overall, these results establish a reliable performance baseline against which the impact of security controls can be evaluated. This directly informed the security–performance trade-off analysis in Week 7 and strengthened understanding of how system hardening influences resource utilisation.
