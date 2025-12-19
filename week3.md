@@ -81,4 +81,6 @@ ping -c 5 SERVER_IP
 
 ## Reflection
 
-Week 3 established the technical tools required to conduct meaningful performance testing. By selecting command-line driven applications with predictable behaviour, the system was prepared for detailed workload evaluation. Each tool supports analysis of a specific subsystem, enabling a structured approach to system measurement in Week 6. This preparation strengthened command-line proficiency and ensured a consistent methodology for later performance analysis.
+Week 3 established the technical tools required to conduct meaningful system analysis and performance testing. By selecting command-line driven utilities with predictable and repeatable behaviour, the system was prepared for structured workload evaluation rather than ad hoc testing. Each tool targeted a specific subsystem, enabling clear separation of CPU, memory, disk, and network observations.
+
+This approach improved measurement accuracy and reduced ambiguity when interpreting results later in the project. It also strengthened command-line proficiency and reinforced the importance of methodological consistency when analysing system behaviour. Overall, this preparation ensured that performance testing in Week 6 could be conducted systematically, with results that were both reliable and comparable across different test scenarios.
