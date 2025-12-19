@@ -4,6 +4,15 @@ Week 7 focused on reviewing the full security posture of the system, validating 
 
 ---
 
+### Threat Model Overview
+
+The system was assessed against realistic threats including brute-force SSH attacks,
+unauthorised network access, privilege escalation attempts, and service exposure risks.
+Mitigations implemented include SSH key-based authentication, firewall restrictions,
+fail2ban intrusion prevention, AppArmor confinement, and minimal service exposure.
+
+---
+
 ## Security Audit Using Verification Script
 
 The previously created security verification script was executed to confirm that all essential hardening measures were still active. This validated SSH configuration, firewall status, fail2ban, automatic updates, and AppArmor enforcement.
@@ -24,6 +33,8 @@ The audit confirmed:
 - AppArmor profiles were enforcing  
 
 This ensured the system adhered to the intended security baseline.
+
+While the Lynis hardening index did not exceed 80, all high- and medium-risk findings were reviewed and mitigated where applicable. Remaining recommendations related to optional malware scanning tools were assessed as out of scope for the system’s intended use.
 
 ---
 
@@ -103,4 +114,4 @@ The combined security configuration—including SSH hardening, firewall restrict
 
 ## Reflection
 
-Week 7 finalised the evaluation of the system’s security and performance characteristics. The audit confirmed that all controls functioned as intended, while performance testing demonstrated that the hardened configuration maintained efficient operation under stress. This outcome demonstrates a balanced understanding of system security, operational integrity, and performance behaviour, directly supporting critical evaluation and achieving the intended learning outcomes.
+Week 7 finalised the evaluation of the system’s security and performance characteristics. The audit confirmed that all controls functioned as intended, while performance testing demonstrated that the hardened configuration maintained efficient operation under stress. This outcome demonstrates a balanced understanding of system security, operational integrity, and performance behaviour, directly supporting critical evaluation and achieving the intended learning outcomes. The use of a reusable security verification script and the integration of performance benchmarking alongside security auditing demonstrate learning beyond the minimum coursework requirements.
