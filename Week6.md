@@ -110,7 +110,7 @@ sudo systemctl status nginx
 curl -I http://SERVER_IP
 ```
 
-![nginx response](images/week6-nginx-response.png)
+![Nginx HTTP response headers](Images/Week6/week6-nginx-http-response.png)
 
 ---
 
