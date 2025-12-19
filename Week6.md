@@ -94,8 +94,8 @@ ping -c 5 SERVER_IP
 ss -s
 ```
 
-![iperf3 output](images/week6-iperf3-output.png)  
-![Network monitoring](images/week6-network-monitoring.png)
+![Network throughput test using iperf3](Images/Week6/week6-network-iperf3-throughput.png)
+![Network latency and socket statistics](Images/Week6/week6-network-latency-and-sockets.png)
 
 ---
 
