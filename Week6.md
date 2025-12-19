@@ -44,8 +44,8 @@ free -h
 vmstat 1 5
 ```
 
-![Memtester installation for memory performance testing](Images/Week6/week6-memtester-installation.png) 
-![Memory monitoring](images/week6-memory-monitoring.png)
+![Memory test using memtester](Images/Week6/week6-memory-memtester-test.png)
+![Memory monitoring using free and vmstat](Images/Week6/week6-memory-monitoring-free-vmstat.png)
 
 ---
 
