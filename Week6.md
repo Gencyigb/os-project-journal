@@ -128,6 +128,11 @@ These results provide the baseline required for comparing secure vs. stressed co
 
 ---
 
+Quantitative summary:
+CPU saturation under stress-ng reached 100% across all cores with no abnormal scheduling delays observed. Disk I/O latency increased under fio load as expected, while iperf3 throughput remained stable. These measurements establish a quantitative baseline for evaluating the performance impact of security controls in Week 7.
+
+---
+
 ### Performance Optimisations Implemented
 
 1. **Firewall and security hardening validation**
