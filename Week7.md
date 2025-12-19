@@ -12,7 +12,8 @@ The previously created security verification script was executed to confirm that
 ./security-baseline.sh
 ```
 
-![Security baseline output](images/week7-security-baseline.png)
+![SSH security configuration](Images/Week7/week7-ssh-security-check.png)
+
 
 The audit confirmed:
 - SSH root login remained disabled  
@@ -48,7 +49,7 @@ Firewall rule verification:
 sudo ufw status verbose
 ```
 
-![Log audit screenshot](images/week7-log-audit.png)
+![Authentication log inspection](Images/Week7/week7-auth-log.png)
 
 These checks confirmed that no unauthorised access attempts succeeded and that the intrusion detection system operated correctly.
 
