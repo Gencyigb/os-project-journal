@@ -43,7 +43,8 @@ sudo ufw enable
 sudo ufw status verbose
 ```
 
-![](Images/Week4/week4-ufw-firewall-ssh.jpeg)
+
+
 
 ---
 
