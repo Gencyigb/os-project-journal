@@ -49,7 +49,7 @@ Firewall rule verification:
 sudo ufw status verbose
 ```
 
-![Authentication log inspection](Images/Week7/week7-auth-log.png)
+![UFW firewall status](Images/Week7/week7-ufw-status.png)
 
 These checks confirmed that no unauthorised access attempts succeeded and that the intrusion detection system operated correctly.
 
@@ -64,7 +64,7 @@ sudo ufw status numbered
 ss -tulnp
 ```
 
-![Firewall review](images/week7-firewall-review.png)
+![Network sockets status](Images/Week7/week7-network-sockets.png)
 
 The audit showed that only SSH (restricted to the workstation IP) was accessible externally, aligning with best practice for a dedicated server environment.
 
@@ -88,7 +88,6 @@ Overall, the system maintained strong performance while retaining a hardened sec
 
 The combined security configuration—including SSH hardening, firewall restrictions, AppArmor enforcement, fail2ban intrusion prevention, and automatic updates—formed a robust defensive foundation. Performance remained stable and predictable under load, demonstrating that the implemented security controls did not significantly reduce system efficiency.
 
-![Final assessment screenshot](images/week7-final-assessment.png)
 
 ---
 
