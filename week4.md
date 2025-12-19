@@ -43,7 +43,7 @@ sudo ufw enable
 sudo ufw status verbose
 ```
 
-
+![Firewall restricted to single IP](Images/Week4/week4-ufw-firewall-ssh-final.jpeg)
 
 
 ---
