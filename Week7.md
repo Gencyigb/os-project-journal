@@ -84,6 +84,13 @@ Overall, the system maintained strong performance while retaining a hardened sec
 
 ---
 
+## Security Audit Using Lynis
+
+A full system security audit was conducted using Lynis to assess baseline security posture. 
+Initial results identified minor hardening recommendations, which were applied before re-running the audit.
+
+The Hardening Index improved after remediation, demonstrating measurable security enhancement.
+
 ## Final System Assessment
 
 The combined security configuration—including SSH hardening, firewall restrictions, AppArmor enforcement, fail2ban intrusion prevention, and automatic updates—formed a robust defensive foundation. Performance remained stable and predictable under load, demonstrating that the implemented security controls did not significantly reduce system efficiency.
