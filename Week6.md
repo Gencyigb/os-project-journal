@@ -128,6 +128,15 @@ These results provide the baseline required for comparing secure vs. stressed co
 
 ---
 
+### Performance Optimisations Implemented
+
+1. **Firewall and security hardening validation**
+   Security controls (UFW, fail2ban, AppArmor) were verified to introduce negligible overhead, preserving performance while improving system security.
+
+2. **Service efficiency optimisation**
+   Nginx demonstrated low CPU and memory usage under load, confirming suitability as a lightweight web service compared to heavier alternatives.
+
+
 ## Reflection
 
 Week 6 provided measurable insights into how the system behaves under controlled workloads. The tests demonstrated the effects of CPU saturation, memory pressure, disk I/O patterns, and network throughput. Remote monitoring through SSH showed stable performance and reliable resource reporting. This data supports the final evaluation in Week 7 and contributes to understanding performance trade-offs associated with security configuration.
