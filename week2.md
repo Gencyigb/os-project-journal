@@ -93,4 +93,6 @@ These metrics would later be compared against the results recorded during Week 6
 
 ## Reflection
 
-Week 2 established the strategic direction for the project by defining security objectives, identifying threats, selecting performance tools, and outlining the testing methodology. This planning ensured that later configuration and evaluation tasks were systematic, justified, and aligned with the learning outcomes. The threat model and performance approach provided the structure needed for rigorous analysis in the following weeks.
+Week 2 established the strategic direction for the project by defining security objectives, identifying realistic threat scenarios, selecting appropriate performance tools, and outlining a structured testing methodology. This planning phase ensured that later configuration, monitoring, and evaluation tasks were systematic, justified, and aligned with the module learning outcomes rather than ad hoc experimentation.
+
+Developing a threat model at this stage helped prioritise security controls and informed decisions around access management, service exposure, and update policies in later weeks. Similarly, defining the performance evaluation approach early improved the consistency and comparability of results gathered during testing. Overall, this week highlighted the importance of upfront planning in producing rigorous, defensible system analysis.
