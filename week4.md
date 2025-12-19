@@ -110,4 +110,6 @@ Images/Week4/week4-ssh-config.jpeg
 
 ## Reflection
 
-Week 4 established a secure, well-structured server environment capable of supporting further hardening and performance analysis. SSH hardening prevented unauthorised access, the firewall restricted network exposure, and controlled user privileges reinforced the principle of least privilege. These steps built the foundation for the more advanced security and monitoring measures introduced in Week 5 and contributed directly to developing secure administration practices and command-line proficiency.
+Week 4 established a secure, well-structured server environment capable of supporting further hardening and performance analysis. SSH hardening reduced the attack surface by eliminating password-based and root access, while firewall rules restricted network exposure to only required services. User privilege management reinforced the principle of least privilege, reducing the impact of potential account compromise.
+
+These controls reflect industry-standard baseline hardening practices and significantly improved the system’s security posture without introducing noticeable administrative or performance overhead. Implementing these measures early ensured that subsequent monitoring and automation tasks in Week 5 could be performed on a trusted and stable platform. Overall, this week strengthened practical understanding of secure server administration and highlighted the importance of layered security controls in real-world Linux environments.
