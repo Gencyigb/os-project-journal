@@ -37,6 +37,9 @@ Authentication log inspection:
 sudo tail -n 20 /var/log/auth.log
 ```
 
+![Authentication log review](Images/Week7/week7-auth-log-2.png)
+
+
 fail2ban activity:
 
 ```bash
@@ -49,7 +52,7 @@ Firewall rule verification:
 sudo ufw status verbose
 ```
 
-![UFW firewall status](Images/Week7/week7-ufw-status.png)
+![UFW firewall status (restricted to workstation IP)](Images/Week7/week7-ufw-status-2.png)
 
 These checks confirmed that no unauthorised access attempts succeeded and that the intrusion detection system operated correctly.
 
@@ -64,7 +67,7 @@ sudo ufw status numbered
 ss -tulnp
 ```
 
-![Network sockets status](Images/Week7/week7-network-sockets.png)
+![Listening network services](Images/Week7/week7-network-sockets-2.png)
 
 The audit showed that only SSH (restricted to the workstation IP) was accessible externally, aligning with best practice for a dedicated server environment.
 
