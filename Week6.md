@@ -66,8 +66,8 @@ iostat -xz 1 5
 df -h
 ```
 
-![fio output](images/week6-fio-output.png)  
-![Disk performance test using fio](Images/Week6/week6-fio-disk-performance.png)
+![Disk performance test using fio](Images/Week6/week6-disk-fio-performance.png)
+![Disk I/O monitoring using iostat and df](Images/Week6/week6-disk-monitoring-iostat-df.png)
 
 ---
 
